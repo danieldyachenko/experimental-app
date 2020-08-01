@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { MenuRoot, ButtonMenu, DropdownPanel, Option, Pointer } from "./styled";
+import { MenuRoot, ButtonMenu, DropdownPanel, Option } from "./styled";
 
 export default () => {
 
@@ -49,7 +49,6 @@ export default () => {
             </ButtonMenu>
             {open &&
                 <DropdownPanel isAnimated={isAnimated} ref={menuElement}>
-                    {/* <Pointer/> */}
                     {options.map((option, index) =>
                         <Option key={option + index} onClick={() => onOptionClick(index)} isActive={index === activeOption}>
                             {option}

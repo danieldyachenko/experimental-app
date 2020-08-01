@@ -82,19 +82,5 @@ export const Option = styled.div`
     z-index: 1;
 `;
 
-export const Pointer = styled.div`
-  align-self: center;
-  height: 0px;
-  width: 0px;
-  border: 8px solid transparent; 
-  border-top: 8px solid red; 
-  border-left: 8px solid red; 
-  transform: rotate(45deg);
-  position: absolute;
-  top: -8px;
-  box-shadow: 0px 0px 4px 0px #757575;
-  z-index: -1;
-`;
-
 
 
