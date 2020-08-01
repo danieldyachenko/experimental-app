@@ -43,7 +43,7 @@ export const DropdownPanel = styled.div`
     width: ${dropdownWidth}px;
     background: #fff;
     position: relative;
-    box-shadow: 0px 0px 4px 0px #757575;
+    box-shadow: 0px 1px 3px 0px #757575;
     right: ${(dropdownWidth - btnWidth) / 2}px;
     border-radius: 5px;
     padding-bottom: 8px;
@@ -58,7 +58,7 @@ export const DropdownPanel = styled.div`
       border-style: solid;
       border-width: 16px 0 0 16px;
       border-color: transparent transparent transparent #fff;
-      box-shadow: 0px 0px 4px 0px #757575;
+      box-shadow: 1px -1px 3px 0px #757575;
       z-index: -1;
      };
      &::before {
