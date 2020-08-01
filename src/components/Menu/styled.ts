@@ -6,7 +6,7 @@ const dropdownWidth = 150
 
 export const MenuRoot = styled.div`
     height: ${btnHeight}px;
-    width: ${btnWidth}px;
+    width: ${btnWidth}px; 
 `;
 
 export const ButtonMenu = styled.button`
@@ -26,37 +26,75 @@ export const ButtonMenu = styled.button`
 const show = (isAnimated: boolean) => keyframes`
   from {
     transform: scale(${isAnimated ? 0.5 : 1});
-    top: ${isAnimated ? -50 : 5}px;
+    top: ${isAnimated ? -50 : 15}px;
     opacity: ${isAnimated ? 0 : 1};
   }
 
   to {
     transform: scale(${isAnimated ? 1 : 0.5});
-    top: ${isAnimated ? 5 : -50}px;
+    top: ${isAnimated ? 15 : -50}px;
     opacity: ${isAnimated ? 1 : 0};
   }
 `;
 
 export const DropdownPanel = styled.div`
+    display: flex;
+    flex-direction: column;
     width: ${dropdownWidth}px;
-    background-color: white;
+    background: #fff;
     position: relative;
-    box-shadow: 0px 1px 2px 0px #757575;
-    top: 5px;
+    box-shadow: 0px 0px 4px 0px #757575;
     right: ${(dropdownWidth - btnWidth) / 2}px;
     border-radius: 5px;
-    padding: 8px 0;
+    padding-bottom: 8px;
     animation: ${({isAnimated}: {isAnimated: boolean}) => show(isAnimated)} 0.15s linear forwards;
+    z-index: 1;
+    &::after {
+      transform: rotate(135deg);
+      content: ''; 
+      top: -8px;
+      position: absolute; 
+      align-self: center;
+      border-style: solid;
+      border-width: 16px 0 0 16px;
+      border-color: transparent transparent transparent #fff;
+      box-shadow: 0px 0px 4px 0px #757575;
+      z-index: -1;
+     };
+     &::before {
+      content: ''; 
+      height: 8px;
+      width: 100%;
+      background: #fff;
+      border-radius: 5px;
+     }
 `;
 
 export const Option = styled.div`
     text-align: center;
     padding: 8px 16px;
-    background-color: ${({isActive}: {isActive: boolean}) => isActive ? '#eeeeee' : 'tranparent'};
+    background-color: ${({isActive}: {isActive: boolean}) => isActive ? '#eeeeee' : '#fff'};
     cursor: pointer;
     transition: all 0.2s ease-out;
     &:hover {
       background-color: #eeeeee;
-    }
+    };
+    z-index: 1;
 `;
+
+export const Pointer = styled.div`
+  align-self: center;
+  height: 0px;
+  width: 0px;
+  border: 8px solid transparent; 
+  border-top: 8px solid red; 
+  border-left: 8px solid red; 
+  transform: rotate(45deg);
+  position: absolute;
+  top: -8px;
+  box-shadow: 0px 0px 4px 0px #757575;
+  z-index: -1;
+`;
+
+
 
