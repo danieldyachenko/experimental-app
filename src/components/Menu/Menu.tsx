@@ -40,12 +40,13 @@ export default () => {
     const onOptionClick = (index: number) => {
         hideDropdownPanel()
         setActiveOtion(index)
+        console.log('index: ' + index)
     }
 
     return (
         <MenuRoot>
             <ButtonMenu onClick={open ? hideDropdownPanel : openDropdownPanel}>
-                OPEN MENU
+                Open menu
             </ButtonMenu>
             {open &&
                 <DropdownPanel isAnimated={isAnimated} ref={menuElement}>

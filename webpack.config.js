@@ -15,13 +15,15 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'build'),
+        publicPath: '/',
         filename: '[name].bundle.js'
     },
     devServer: {
         index: 'index.html',
         contentBase: path.join(__dirname, 'public'),
         port: 9000,
-        open: true
+        open: true,
+        historyApiFallback: true
     },
     module: {
         rules: [
