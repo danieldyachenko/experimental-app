@@ -1,5 +1,5 @@
 import React, { useRef } from "react"
-import { DarkBackground, PanelButton, Panel } from "./styled"
+import { DarkBackground, PanelButton, Panel, PanelContainer } from "./styled"
 import { useState } from "react"
 
 export default () => {
@@ -7,18 +7,13 @@ export default () => {
     const [open, setOpen] = useState<boolean>(false)
     const [isAnimated, setAnimated] = useState<boolean>(false)
 
-    const panelElement = useRef<HTMLDivElement>(null)
-
     const openPanel = () => {
         setAnimated(true)
         setOpen(true)
     }
 
     const closePanel = () => {
-        if (!panelElement.current.contains(event.target as Node)) {
-            setAnimated(false)
-            setTimeout(() => setOpen(false), 150)
-        }
+        setAnimated(false)
     }
 
     return (
@@ -27,11 +22,12 @@ export default () => {
                 Open panel
             </PanelButton>
             {open &&
-                <DarkBackground onClick={closePanel} isAnimated={isAnimated}>
-                    <Panel ref={panelElement}>
+                <PanelContainer>
+                    <Panel isAnimated={isAnimated}>
                         Panel
                     </Panel>
-                </DarkBackground>
+                    <DarkBackground onAnimationEnd={() => !isAnimated ? setOpen(false) : null} onClick={closePanel} isAnimated={isAnimated}/>
+                </PanelContainer>
             }
         </>
     )
