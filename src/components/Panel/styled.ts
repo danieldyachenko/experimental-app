@@ -12,6 +12,9 @@ export const PanelButton = styled.button`
     padding: 8px 16px;
     color: white;
     box-shadow: 0px 1px 2px 0px rgba(26,35,126 ,1);
+    &:hover {
+      background-color: rgba(63,81,181 ,1);
+    }
 `;
 
 const show = (isAnimated: boolean) => keyframes({
