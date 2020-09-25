@@ -81,12 +81,35 @@ export const CurrentDateTitle = styled.div`
     text-align: center;
 `;
 
+//grid-template-columns: auto auto auto auto auto auto auto;
 export const WeeksContainer = styled.div`
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 `;
 
 export const WeekText = styled.div`
     color: #9e9e9e;
     font-size: 0.8em;
+    text-align: center;
+    box-sizing: border-box;
+`;
+
+export const DaysContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+`;
+
+export const Day = styled.div`
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.3s ease 0s;
+    &:hover {
+        background-color: #eeeeee;
+    };
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    box-sizing: border-box;
 `;
