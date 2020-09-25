@@ -47,7 +47,7 @@ export const DarkBackground = styled.div`
     animation: ${({ isAnimated }: { isAnimated: boolean }) => show(isAnimated)} 0.2s ease-in forwards;
 `;
 
-export const Panel = styled.div`
+export const PanelLeft = styled.div`
   width: ${panelWidth};
   position: absolute;
   height: 100%;

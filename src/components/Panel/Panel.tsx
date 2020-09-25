@@ -1,8 +1,8 @@
-import React, { useRef } from "react"
-import { DarkBackground, PanelButton, Panel, PanelContainer } from "./styled"
+import React from "react"
+import { DarkBackground, PanelButton, PanelLeft, PanelContainer } from "./styled"
 import { useState } from "react"
 
-export default () => {
+export default function Panel() {
 
     const [open, setOpen] = useState<boolean>(false)
     const [isAnimated, setAnimated] = useState<boolean>(false)
@@ -12,9 +12,9 @@ export default () => {
         setOpen(true)
     }
 
-    const closePanel = () => {
-        setAnimated(false)
-    }
+    const closePanel = () => setAnimated(false)
+
+    const onAnimationEnd = () => !isAnimated && setOpen(false)
 
     return (
         <>
@@ -23,10 +23,10 @@ export default () => {
             </PanelButton>
             {open &&
                 <PanelContainer>
-                    <Panel isAnimated={isAnimated}>
+                    <PanelLeft isAnimated={isAnimated}>
                         Panel
-                    </Panel>
-                    <DarkBackground onAnimationEnd={() => !isAnimated ? setOpen(false) : null} onClick={closePanel} isAnimated={isAnimated}/>
+                    </PanelLeft>
+                    <DarkBackground onAnimationEnd={onAnimationEnd} onClick={closePanel} isAnimated={isAnimated}/>
                 </PanelContainer>
             }
         </>
