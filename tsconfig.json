@@ -14,7 +14,7 @@
     "moduleResolution": "node",
     "removeComments": true, // Удаляет комментарии при преобразовании в JavaScript
     //"strictNullChecks": true, // строгая проверка null и undefined
-    "esModuleInterop" : true, // Взаимодействие модулей ES
+    "esModuleInterop": true, // Взаимодействие модулей ES
     "alwaysStrict": true, // Строгий режим
     //"strictPropertyInitialization": true // Строгая инициализация свойства
   },

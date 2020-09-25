@@ -1,7 +1,7 @@
 {
   "name": "experimental-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "danieldyachenko",
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --mode production"
