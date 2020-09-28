@@ -99,7 +99,7 @@ export const DaysContainer = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 `;
 
-export const Day = styled.div`
+export const Day = styled.div<{selected: boolean}>`
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -112,4 +112,6 @@ export const Day = styled.div`
     align-items: center;
     margin: 0 auto;
     box-sizing: border-box;
+    background-color: ${props => props.selected ? '#1976d2' : 'transparent'};
+    color: ${props => props.selected ? 'white' : 'balck'}
 `;
