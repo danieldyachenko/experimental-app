@@ -5,7 +5,7 @@ import arrowLeft from "../../assets/keyboard_arrow_left.svg";
 const inputHeight = 30;
 const inputWidth = 150;
 const dropdownWidth = 300;
-const shadow = "0px 2px 6px 0px rgba(117,117,117, 0.4)";
+const shadow = "0px 2px 6px 2px rgba(117,117,117, 0.4)";
 
 export const DatePickerRoot = styled.div`
     height: ${inputHeight}px;
