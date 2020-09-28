@@ -1,21 +1,19 @@
-import styled, {keyframes} from 'styled-components'
-import arrowRight from '../../assets/keyboard_arrow_right.svg'
-import arrowLeft from '../../assets/keyboard_arrow_left.svg'
+import styled, { keyframes } from "styled-components";
+import arrowRight from "../../assets/keyboard_arrow_right.svg";
+import arrowLeft from "../../assets/keyboard_arrow_left.svg";
 
-const inputHeight = 30
-const inputWidth = 150
-const dropdownWidth = 300
-const shadow = '0px 2px 6px 0px rgba(117,117,117, 0.4)'
-const hoverColor = '#eeeeee'
+const inputHeight = 30;
+const inputWidth = 150;
+const dropdownWidth = 300;
+const shadow = "0px 2px 6px 0px rgba(117,117,117, 0.4)";
+const hoverColor = "#eeeeee";
 
 export const DatePickerRoot = styled.div`
     height: ${inputHeight}px;
-    width: ${inputWidth}px; 
+    width: ${inputWidth}px;
 `;
 
-export const DatePickerInput = styled.input`
-
-`;
+export const DatePickerInput = styled.input``;
 
 const show = (isAnimated: boolean) => keyframes`
   from {
@@ -42,7 +40,8 @@ export const DropdownPanel = styled.div`
     right: ${(dropdownWidth - inputWidth) / 2}px;
     border-radius: 8px;
     padding-bottom: 8px;
-    animation: ${({isAnimated}: {isAnimated: boolean}) => show(isAnimated)} 0.15s cubic-bezier(.42, 0, 1, 1) forwards;
+    animation: ${({ isAnimated }: { isAnimated: boolean }) => show(isAnimated)}
+        0.15s cubic-bezier(0.42, 0, 1, 1) forwards;
     z-index: 1;
     height: 300px;
     padding: 8px;
@@ -55,14 +54,17 @@ export const Top = styled.div`
 `;
 
 type PaginationBtnProps = {
-    direction: 'left' | 'right'
-}
+    direction: "left" | "right";
+};
 
 export const PaginationBtn = styled.button<PaginationBtnProps>`
     outline: none;
     border: none;
     background-color: #ffffff;
-    background-image: url(${({direction}) => direction === 'left' ? arrowLeft : direction === 'right' && arrowRight});
+    background-image: url(${({ direction }) =>
+        direction === "left"
+            ? arrowLeft
+            : direction === "right" && arrowRight});
     background-repeat: no-repeat;
     background-position: center center;
     height: 40px;
@@ -73,7 +75,7 @@ export const PaginationBtn = styled.button<PaginationBtnProps>`
     transition: all 0.3s ease 0s;
     &:hover {
         background-color: #eeeeee;
-    };
+    }
 `;
 
 export const CurrentDateTitle = styled.div`
@@ -99,19 +101,26 @@ export const DaysContainer = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 `;
 
-export const Day = styled.div<{selected: boolean}>`
+export const Day = styled.div<{ selected: boolean }>`
     width: 40px;
     height: 40px;
     border-radius: 50%;
     transition: all 0.3s ease 0s;
     &:hover {
         background-color: #eeeeee;
-    };
+    }
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     box-sizing: border-box;
-    background-color: ${props => props.selected ? '#1976d2' : 'transparent'};
-    color: ${props => props.selected ? 'white' : 'balck'}
+    background-color: ${(props) =>
+        props.selected ? "#1976d2" : "transparent"};
+    color: ${(props) => (props.selected ? "white" : "balck")};
+`;
+
+export const EmptyDay = styled.div`
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
 `;

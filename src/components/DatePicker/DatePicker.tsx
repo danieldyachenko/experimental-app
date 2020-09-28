@@ -10,6 +10,7 @@ import {
     WeekText,
     DaysContainer,
     Day,
+    EmptyDay,
 } from "./styled";
 import { FormatDate, Months, OnDayClick, Week } from "./types";
 
@@ -66,8 +67,10 @@ export default function DatePicker() {
         32 - new Date(date.getFullYear(), date.getMonth(), 32).getDate();
 
     const days: Array<number> = [];
-    for (let i = 1; i <= daysInMonth(); i++) {
-        days.push(i);
+    const emptyDaysNumber =
+        7 - (7 - new Date(date.getFullYear(), date.getMonth(), 1).getDay());
+    for (let i = 1; i <= daysInMonth() + emptyDaysNumber; i++) {
+        days.push(i - emptyDaysNumber);
     }
 
     const onDayClick: OnDayClick = (day) => {
@@ -89,8 +92,6 @@ export default function DatePicker() {
 
         return dd + "." + mm + "." + yyyy;
     };
-
-    //console.log(new Date(date.getFullYear(), date.getMonth(), 1).getDay())
 
     return (
         <DatePickerRoot>
@@ -121,15 +122,19 @@ export default function DatePicker() {
                         ))}
                     </WeeksContainer>
                     <DaysContainer>
-                        {days.map((day) => (
-                            <Day
-                                key={day}
-                                onClick={() => onDayClick(day)}
-                                selected={day === date.getDate()}
-                            >
-                                <div>{day}</div>
-                            </Day>
-                        ))}
+                        {days.map((day) =>
+                            day >= 1 ? (
+                                <Day
+                                    key={day}
+                                    onClick={() => onDayClick(day)}
+                                    selected={day === date.getDate()}
+                                >
+                                    <div>{day}</div>
+                                </Day>
+                            ) : (
+                                <EmptyDay key={day} />
+                            )
+                        )}
                     </DaysContainer>
                 </DropdownPanel>
             )}
