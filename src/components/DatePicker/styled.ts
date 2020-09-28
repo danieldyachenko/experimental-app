@@ -106,7 +106,7 @@ export const Day = styled.div<{ selected: boolean }>`
     height: 40px;
     border-radius: 50%;
     transition: all 0.3s ease 0s;
-    ${props => !props.selected && `&:hover {background-color: #eeeeee;}`}
+    ${(props) => !props.selected && `&:hover {background-color: #eeeeee;}`}
     display: flex;
     justify-content: center;
     align-items: center;

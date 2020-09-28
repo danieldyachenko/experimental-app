@@ -82,15 +82,15 @@ export default function DatePicker() {
     };
 
     const formatDate: FormatDate = (date) => {
-        let dd: string | number = date.getDate();
-        if (dd < 10) dd = "0" + dd;
+        let day: string | number = date.getDate();
+        if (day < 10) day = "0" + day;
 
-        let mm: string | number = date.getMonth() + 1;
-        if (mm < 10) mm = "0" + mm;
+        let month: string | number = date.getMonth() + 1;
+        if (month < 10) month = "0" + month;
 
-        const yyyy: number = date.getFullYear();
+        const year: number = date.getFullYear();
 
-        return dd + "." + mm + "." + yyyy;
+        return day + "." + month + "." + year;
     };
 
     return (
