@@ -6,7 +6,6 @@ const inputHeight = 30;
 const inputWidth = 150;
 const dropdownWidth = 300;
 const shadow = "0px 2px 6px 0px rgba(117,117,117, 0.4)";
-const hoverColor = "#eeeeee";
 
 export const DatePickerRoot = styled.div`
     height: ${inputHeight}px;
@@ -43,7 +42,7 @@ export const DropdownPanel = styled.div`
     animation: ${({ isAnimated }: { isAnimated: boolean }) => show(isAnimated)}
         0.15s cubic-bezier(0.42, 0, 1, 1) forwards;
     z-index: 1;
-    height: 300px;
+    height: 310px;
     padding: 8px;
 `;
 
@@ -87,6 +86,7 @@ export const CurrentDateTitle = styled.div`
 export const WeeksContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin: 10px 0;
 `;
 
 export const WeekText = styled.div`
@@ -106,9 +106,7 @@ export const Day = styled.div<{ selected: boolean }>`
     height: 40px;
     border-radius: 50%;
     transition: all 0.3s ease 0s;
-    &:hover {
-        background-color: #eeeeee;
-    }
+    ${props => !props.selected && `&:hover {background-color: #eeeeee;}`}
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,6 +115,7 @@ export const Day = styled.div<{ selected: boolean }>`
     background-color: ${(props) =>
         props.selected ? "#1976d2" : "transparent"};
     color: ${(props) => (props.selected ? "white" : "balck")};
+    cursor: pointer;
 `;
 
 export const EmptyDay = styled.div`
