@@ -12,7 +12,7 @@ import {
     Day,
     EmptyDay,
 } from "./styled";
-import { FormatDate, Months, OnDayClick, Week } from "./types";
+import { FormatDate, Months, OnDayClick, OnMouseMove, Week } from "./types";
 
 const months: Months = [
     "January",
@@ -35,6 +35,7 @@ export default function DatePicker() {
     const [open, setOpen] = useState<boolean>(false);
     const [isAnimated, setAnimated] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState<string>("");
+    const [placeholder, setPlaceholder] = useState<string>("Select date");
 
     const datePickerElement = useRef<HTMLDivElement>(null);
 
@@ -81,6 +82,16 @@ export default function DatePicker() {
         hideDropdownPanel();
     };
 
+    const onMouseMove: OnMouseMove = (day) => {
+        const selectedDate = new Date(date.getFullYear(), date.getMonth(), day);
+        const newPlaceholderValue = formatDate(selectedDate);
+        setPlaceholder(newPlaceholderValue);
+    };
+
+    const onMouseLeave = () => {
+        setPlaceholder("Select date");
+    };
+
     const formatDate: FormatDate = (date) => {
         let day: string | number = date.getDate();
         if (day < 10) day = "0" + day;
@@ -98,6 +109,8 @@ export default function DatePicker() {
             <DatePickerInput
                 onClick={openDropdownPanel}
                 value={inputValue}
+                placeholder={placeholder}
+                open={open}
                 readOnly
             />
             {open && (
@@ -121,13 +134,14 @@ export default function DatePicker() {
                             <WeekText key={week}>{week}</WeekText>
                         ))}
                     </WeeksContainer>
-                    <DaysContainer>
+                    <DaysContainer onMouseLeave={onMouseLeave}>
                         {days.map((day) =>
                             day >= 1 ? (
                                 <Day
                                     key={day}
                                     onClick={() => onDayClick(day)}
                                     selected={day === date.getDate()}
+                                    onMouseMove={() => onMouseMove(day)}
                                 >
                                     <div>{day}</div>
                                 </Day>

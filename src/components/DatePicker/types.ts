@@ -17,4 +17,6 @@ export type Week = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 
 export type OnDayClick = (day: number) => void
 
+export type OnMouseMove = OnDayClick
+
 export type FormatDate = (date: Date) => string

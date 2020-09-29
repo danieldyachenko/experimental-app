@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import arrowRight from "../../assets/keyboard_arrow_right.svg";
 import arrowLeft from "../../assets/keyboard_arrow_left.svg";
+import datepicker from "../../assets/datepicker.svg"
 
 const inputHeight = 30;
 const inputWidth = 150;
@@ -12,7 +13,20 @@ export const DatePickerRoot = styled.div`
     width: ${inputWidth}px;
 `;
 
-export const DatePickerInput = styled.input``;
+export const DatePickerInput = styled.input<{open: boolean}>`
+    outline: none;
+    font-size: 14px;
+    height: ${inputHeight}px;
+    width: ${inputWidth}px;
+    box-sizing: border-box;
+    border: 1px solid ${({open}) => open ? '#aeaeae' : '#e0e0e0'};
+    &:hover {
+        border-color: #aeaeae;
+    };
+    transition: all 0.3s ease 0s;
+    padding 0 8px;
+    border-radius: 3px;
+`;
 
 const show = (isAnimated: boolean) => keyframes`
   from {
