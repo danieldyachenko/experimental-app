@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import formatDate from "./helpers/formatDate";
+import validate from "./helpers/validate";
 import {
     DatePickerInput,
     DatePickerRoot,
@@ -12,7 +14,7 @@ import {
     Day,
     EmptyDay,
 } from "./styled";
-import { FormatDate, Months, OnDayClick, OnMouseMove, Week } from "./types";
+import { InputChange, Months, OnDayClick, OnMouseMove, Week } from "./types";
 
 const months: Months = [
     "January",
@@ -35,6 +37,7 @@ export default function DatePicker() {
     const [open, setOpen] = useState<boolean>(false);
     const [isAnimated, setAnimated] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState<string>("");
+    const [error, setError] = useState<boolean>(false);
     const [placeholder, setPlaceholder] = useState<string>("Select date");
 
     const datePickerElement = useRef<HTMLDivElement>(null);
@@ -52,6 +55,16 @@ export default function DatePicker() {
     const openDropdownPanel = () => {
         setAnimated(true);
         setOpen(true);
+
+        if (inputValue) {
+            const dateArray = inputValue.split(".");
+            const newDate = new Date(
+                parseInt(dateArray[2]),
+                parseInt(dateArray[1]) - 1,
+                parseInt(dateArray[0])
+            );
+            setDate(newDate);
+        }
     };
 
     const hideDropdownPanel = () => setAnimated(false);
@@ -92,16 +105,11 @@ export default function DatePicker() {
         setPlaceholder("Select date");
     };
 
-    const formatDate: FormatDate = (date) => {
-        let day: string | number = date.getDate();
-        if (day < 10) day = "0" + day;
-
-        let month: string | number = date.getMonth() + 1;
-        if (month < 10) month = "0" + month;
-
-        const year: number = date.getFullYear();
-
-        return day + "." + month + "." + year;
+    const datePickerInputChange: InputChange = (event) => {
+        if (!validate(event.target.value)) {
+            setError(true);
+        } else setError(false);
+        setInputValue(event.target.value);
     };
 
     return (
@@ -111,7 +119,8 @@ export default function DatePicker() {
                 value={inputValue}
                 placeholder={placeholder}
                 open={open}
-                readOnly
+                onChange={datePickerInputChange}
+                error={error}
             />
             {open && (
                 <DropdownPanel

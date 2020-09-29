@@ -13,15 +13,15 @@ export const DatePickerRoot = styled.div`
     width: ${inputWidth}px;
 `;
 
-export const DatePickerInput = styled.input<{open: boolean}>`
+export const DatePickerInput = styled.input<{open: boolean, error: boolean}>`
     outline: none;
     font-size: 14px;
     height: ${inputHeight}px;
     width: ${inputWidth}px;
     box-sizing: border-box;
-    border: 1px solid ${({open}) => open ? '#aeaeae' : '#e0e0e0'};
+    border: 1px solid ${({open, error}) => error ? '#e57373' : open ? '#64b5f6' : '#e0e0e0'};
     &:hover {
-        border-color: #aeaeae;
+        border-color: ${({error}) => error ? '#e57373' : '#64b5f6'};
     };
     transition: all 0.3s ease 0s;
     padding 0 8px;
@@ -96,7 +96,6 @@ export const CurrentDateTitle = styled.div`
     text-align: center;
 `;
 
-//grid-template-columns: auto auto auto auto auto auto auto;
 export const WeeksContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
