@@ -6,13 +6,15 @@ import CheckBox from './components/CheckBox/CheckBox';
 import DatePicker from './components/DatePicker/DatePicker';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { AppContainer } from './styled';
+import Links from './components/Links/Links';
 
 export default function App() {
     return (
         <BrowserRouter>
             <AppContainer>
                 <Switch>
-                    <Route exact path='/' component={Menu} />
+                    <Route exact path='/' component={Links} />
+                    <Route path='/menu' component={Menu} />
                     <Route path='/panel' component={Panel} />
                     <Route path='/checkbox' component={CheckBox} />
                     <Route path='/datepicker' component={DatePicker} />

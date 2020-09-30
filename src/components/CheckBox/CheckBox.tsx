@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import doneIcon from '../../assets/done.svg'
 
 export default () => {
     const [isChecked, toggleChecked] = useState<boolean>(false);
@@ -46,7 +47,7 @@ const CustomCheckBox = styled.input`
         transition: border-color 0.2s ease-out;
     }
     &:checked + label::before {
-        background-image: url('./images/check_white_2.svg');
+        background-image: url('${doneIcon}');
         background-color: rgba(92, 107, 192, 1);
         border: 0px solid rgba(92, 107, 192, 1);
     }
