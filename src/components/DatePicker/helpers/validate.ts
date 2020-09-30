@@ -1,6 +1,6 @@
 const validate = (date: string) => {
-    const splittedDate = date.split(".");
-    
+    const splittedDate = date.split('.');
+
     return (
         parseInt(splittedDate[0]) <= 31 &&
         parseInt(splittedDate[1]) <= 12 &&

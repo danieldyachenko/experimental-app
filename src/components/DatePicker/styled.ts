@@ -1,13 +1,12 @@
-import styled, { keyframes } from "styled-components";
-import arrowRight from "../../assets/keyboard_arrow_right.svg";
-import arrowLeft from "../../assets/keyboard_arrow_left.svg";
-import datepicker from "../../assets/datepicker.svg";
+import styled, { keyframes } from 'styled-components';
+import arrowRight from '../../assets/keyboard_arrow_right.svg';
+import arrowLeft from '../../assets/keyboard_arrow_left.svg';
 
 const inputHeight = 30;
 const inputWidth = 180;
 const dropdownWidth = 300;
-const shadow = "0px 2px 6px 2px rgba(117,117,117, 0.4)";
-const errorColor = "#e57373";
+const shadow = '0px 2px 6px 2px rgba(117,117,117, 0.4)';
+const errorColor = '#e57373';
 
 export const DatePickerRoot = styled.div`
     height: ${inputHeight}px;
@@ -21,9 +20,9 @@ export const DatePickerInput = styled.input<{ open: boolean; error: boolean }>`
     width: ${inputWidth}px;
     box-sizing: border-box;
     border: 1px solid ${({ open, error }) =>
-        error ? errorColor : open ? "#64b5f6" : "#e0e0e0"};
+        error ? errorColor : open ? '#64b5f6' : '#e0e0e0'};
     &:hover {
-        border-color: ${({ error }) => (error ? errorColor : "#64b5f6")};
+        border-color: ${({ error }) => (error ? errorColor : '#64b5f6')};
     };
     transition: all 0.3s ease 0s;
     padding 0 8px;
@@ -69,7 +68,7 @@ export const Top = styled.div`
 `;
 
 type PaginationBtnProps = {
-    direction: "left" | "right";
+    direction: 'left' | 'right';
 };
 
 export const PaginationBtn = styled.button<PaginationBtnProps>`
@@ -77,9 +76,9 @@ export const PaginationBtn = styled.button<PaginationBtnProps>`
     border: none;
     background-color: #ffffff;
     background-image: url(${({ direction }) =>
-        direction === "left"
+        direction === 'left'
             ? arrowLeft
-            : direction === "right" && arrowRight});
+            : direction === 'right' && arrowRight});
     background-repeat: no-repeat;
     background-position: center center;
     height: 40px;
@@ -121,15 +120,14 @@ export const Day = styled.div<{ selected: boolean }>`
     height: 40px;
     border-radius: 50%;
 
-    ${(props) => !props.selected && `&:hover {background-color: #eeeeee;}`}
+    ${props => !props.selected && `&:hover {background-color: #eeeeee;}`}
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     box-sizing: border-box;
-    background-color: ${(props) =>
-        props.selected ? "#1976d2" : "transparent"};
-    color: ${(props) => (props.selected ? "white" : "balck")};
+    background-color: ${props => (props.selected ? '#1976d2' : 'transparent')};
+    color: ${props => (props.selected ? 'white' : 'balck')};
     cursor: pointer;
 `;
 
@@ -141,5 +139,5 @@ export const EmptyDay = styled.div`
 
 export const Error = styled.div`
     position: absolute;
-    color: ${errorColor}
+    color: ${errorColor};
 `;

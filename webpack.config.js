@@ -79,8 +79,8 @@ module.exports = {
                 { from: "public/manifest.json" },
             ],
         }),
-        new webpack.ProvidePlugin({
+        /* new webpack.ProvidePlugin({
             React: "react",
-        }),
+        }), */
     ],
 };
