@@ -1,27 +1,29 @@
 import styled, { keyframes } from "styled-components";
 import arrowRight from "../../assets/keyboard_arrow_right.svg";
 import arrowLeft from "../../assets/keyboard_arrow_left.svg";
-import datepicker from "../../assets/datepicker.svg"
+import datepicker from "../../assets/datepicker.svg";
 
 const inputHeight = 30;
-const inputWidth = 150;
+const inputWidth = 180;
 const dropdownWidth = 300;
 const shadow = "0px 2px 6px 2px rgba(117,117,117, 0.4)";
+const errorColor = "#e57373";
 
 export const DatePickerRoot = styled.div`
     height: ${inputHeight}px;
     width: ${inputWidth}px;
 `;
 
-export const DatePickerInput = styled.input<{open: boolean, error: boolean}>`
+export const DatePickerInput = styled.input<{ open: boolean; error: boolean }>`
     outline: none;
     font-size: 14px;
     height: ${inputHeight}px;
     width: ${inputWidth}px;
     box-sizing: border-box;
-    border: 1px solid ${({open, error}) => error ? '#e57373' : open ? '#64b5f6' : '#e0e0e0'};
+    border: 1px solid ${({ open, error }) =>
+        error ? errorColor : open ? "#64b5f6" : "#e0e0e0"};
     &:hover {
-        border-color: ${({error}) => error ? '#e57373' : '#64b5f6'};
+        border-color: ${({ error }) => (error ? errorColor : "#64b5f6")};
     };
     transition: all 0.3s ease 0s;
     padding 0 8px;
@@ -31,13 +33,13 @@ export const DatePickerInput = styled.input<{open: boolean, error: boolean}>`
 const show = (isAnimated: boolean) => keyframes`
   from {
     transform: scale(${isAnimated ? 0.5 : 1});
-    top: ${isAnimated ? -100 : 5}px;
+    top: ${isAnimated ? -100 : 20}px;
     opacity: ${isAnimated ? 0 : 1};
   }
 
   to {
     transform: scale(${isAnimated ? 1 : 0.5});
-    top: ${isAnimated ? 5 : -100}px;
+    top: ${isAnimated ? 20 : -100}px;
     opacity: ${isAnimated ? 1 : 0};
   }
 `;
@@ -118,7 +120,7 @@ export const Day = styled.div<{ selected: boolean }>`
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    transition: all 0.3s ease 0s;
+
     ${(props) => !props.selected && `&:hover {background-color: #eeeeee;}`}
     display: flex;
     justify-content: center;
@@ -135,4 +137,9 @@ export const EmptyDay = styled.div`
     width: 40px;
     height: 40px;
     margin: 0 auto;
+`;
+
+export const Error = styled.div`
+    position: absolute;
+    color: ${errorColor}
 `;

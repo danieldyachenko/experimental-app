@@ -13,6 +13,7 @@ import {
     DaysContainer,
     Day,
     EmptyDay,
+    Error,
 } from "./styled";
 import { InputChange, Months, OnDayClick, OnMouseMove, Week } from "./types";
 
@@ -39,6 +40,7 @@ export default function DatePicker() {
     const [inputValue, setInputValue] = useState<string>("");
     const [error, setError] = useState<boolean>(false);
     const [placeholder, setPlaceholder] = useState<string>("Select date");
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
     const datePickerElement = useRef<HTMLDivElement>(null);
 
@@ -56,7 +58,7 @@ export default function DatePicker() {
         setAnimated(true);
         setOpen(true);
 
-        if (inputValue) {
+        if (inputValue && validate(inputValue)) {
             const dateArray = inputValue.split(".");
             const newDate = new Date(
                 parseInt(dateArray[2]),
@@ -67,7 +69,9 @@ export default function DatePicker() {
         }
     };
 
-    const hideDropdownPanel = () => setAnimated(false);
+    const hideDropdownPanel = () => {
+        setAnimated(false);
+    }
 
     const onAnimationEnd = () => !isAnimated && setOpen(false);
 
@@ -92,7 +96,9 @@ export default function DatePicker() {
         const newInputValue = formatDate(selectedDate);
         setInputValue(newInputValue);
         setDate(selectedDate);
+        setSelectedDate(selectedDate);
         hideDropdownPanel();
+        setError(false);
     };
 
     const onMouseMove: OnMouseMove = (day) => {
@@ -106,11 +112,26 @@ export default function DatePicker() {
     };
 
     const datePickerInputChange: InputChange = (event) => {
-        if (!validate(event.target.value)) {
-            setError(true);
-        } else setError(false);
+        if (validate(event.target.value)) {
+            const dateArray = event.target.value.split(".");
+            const newDate = new Date(
+                parseInt(dateArray[2]),
+                parseInt(dateArray[1]) - 1,
+                parseInt(dateArray[0])
+            );
+            setSelectedDate(newDate);
+            setDate(newDate);
+        }
         setInputValue(event.target.value);
     };
+
+    const onBlur = () => {
+        if (inputValue && !validate(inputValue)) {
+            setError(true);
+        } else {
+            setError(false);
+        }
+    }
 
     return (
         <DatePickerRoot>
@@ -121,7 +142,9 @@ export default function DatePicker() {
                 open={open}
                 onChange={datePickerInputChange}
                 error={error}
+                onBlur={onBlur}
             />
+            {error && <Error>Invalid date format.</Error>}
             {open && (
                 <DropdownPanel
                     isAnimated={isAnimated}
@@ -149,7 +172,11 @@ export default function DatePicker() {
                                 <Day
                                     key={day}
                                     onClick={() => onDayClick(day)}
-                                    selected={day === date.getDate()}
+                                    selected={
+                                        day === selectedDate.getDate() &&
+                                        selectedDate.getMonth() ===
+                                            date.getMonth()
+                                    }
                                     onMouseMove={() => onMouseMove(day)}
                                 >
                                     <div>{day}</div>
